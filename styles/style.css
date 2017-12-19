@@ -1,0 +1,71 @@
+
+body{
+    background-color: black;
+
+}
+
+.pageTwo>.textBlocks{
+    width: 350px;
+    height: 250px;
+    /* background-color: rgba(19, 75, 131, 0.5); */
+    position: absolute;
+
+}
+
+.pageTwo>.textBlockEarth{
+    top: 130px;
+    left: 120px;
+}
+
+.pageTwo>.textBlockMars{
+    top: 510px;
+    left: 855px;
+}
+.pageTwo>h1{
+    position: absolute;
+    left: 44px;
+    top:35px;
+    font-family: Proxima Nova;
+    font-weight: bolder;
+    font-size: 56px;
+    color: white;
+}
+.pageTwo>.textBlocks>h2{
+    font-family: Proxima Nova;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+    margin-top: 30px;
+}
+
+.pageTwo>.textBlocks>p{
+    font-family: Proxima Nova, light;
+    font-weight: light;
+    font-size: 16px;
+    color: white;
+    margin-top: 15px;
+    text-align: justify;
+    line-height: 133%;
+}
+
+.planets{
+
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+}
+
+.planetEarth{
+    width: 210px;
+    height: 210px;
+    top: 500px;
+    left: 195px;
+    transform: translateX(-2px);
+}
+
+.planetMars{
+    width: 310px;
+    height: 310px;
+    top: 96px;
+    left: 881px;
+}
