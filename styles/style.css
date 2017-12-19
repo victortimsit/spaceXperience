@@ -1,0 +1,30 @@
+body{
+    cursor: none;
+}
+canvas{
+    background: #16181f;
+}
+
+/*** CURSOR ***/
+.cursorContainer{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 0.5px solid #fefefe;
+    position: absolute;
+    opacity: 0.8;
+    top: -8px;
+    left: -8px;
+    transition: 0.1s ease;
+} 
+
+.cursor{
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    opacity: 0.8;
+    background: #fefefe;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
