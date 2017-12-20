@@ -2,6 +2,7 @@
 const $canvas = document.querySelector('canvas')
 const context = $canvas.getContext('2d')
 
+// Set cursor elements
 const $cursorContainer = document.querySelector('.cursorContainer')
 const $cursor = document.querySelector('.cursor')
 const cursorCoords = { x:0 , y:0 }
@@ -18,6 +19,9 @@ const mouse = {
     x: 0,
     y: 0
 }
+
+// Set title
+const $spaceXLogo = document.querySelector('.spaceXLogo')
 
 // Rezise canvas function
 const resizeCanvas = () => {
@@ -43,15 +47,27 @@ particules.create()
 // Loop
 const loop = () => {
     window.requestAnimationFrame(loop)
-
-    clearCanvas()
     
     particules.update()
+    clearCanvas()
+    
     particules.draw()
 }
 
+const title = { 
+    originX: 50,
+    originY: 50,
+    x: 50, 
+    y: 50 }
 // Animate cursor on mousemove
 document.addEventListener('mousemove', (event) => {
+
+    // Title animation 
+    title.x = title.originX + (event.clientX / window.innerWidth - 0.5) * 5
+    title.y = title.originY + (event.clientY / window.innerWidth - 0.5) * 50
+    
+    $spaceXLogo.style.transform = `translateX(-${title.x}%) translateY(-${title.y}%)`
+
     mouse.x = event.clientX
     mouse.y = event.clientY
     
@@ -62,7 +78,7 @@ document.addEventListener('mousemove', (event) => {
     $cursor.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px)`  
 
     if(mouse.x >= window.innerWidth * 0.9){
-        console.log(window.innerWidth)
+      
         $cursorContainer.style.background = '#fefefe'
         $cursorContainer.style.clipPath = 'polygon(29% 0, 75% 50%, 29% 100%, 26% 100%, 72% 50%, 26% 0)'
         $cursor.style.opacity = 0
@@ -80,14 +96,13 @@ document.addEventListener('mousemove', (event) => {
     }
 })
 
-    // Animate cursor on mousedown and mouse up
-    document.addEventListener('mousedown', () => {
-        $cursorContainer.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px) scale(0.2)`
+// Animate cursor on mousedown and mouse up
+document.addEventListener('mousedown', () => {
+    $cursorContainer.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px) scale(0.2)`
 
     document.addEventListener('mouseup', () => {
         $cursorContainer.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px) scale(1)`
     })
 })
-
 
 loop()

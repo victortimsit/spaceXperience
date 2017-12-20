@@ -11,26 +11,16 @@ class Particules {
         this.speed = speed
         this.particules = []
         this.angle = 0
+        this.xTemp = 0
+        this.yTemp = 0
 
         window.addEventListener('mousemove', (event) => {
-            for(this.particule of this.particules){
-                
-                if(this.mouseX > event.clientX){
-                    this.particule.x += 0.5
-                }
-                else if(this.mouseX < event.clientX){
-                    this.particule.x -= 0.5
-                }
-                else if(this.mouseY > event.clientY){
-                    this.particule.y += 0.5
-                }
-                else if(this.mouseY < event.clientY){
-                    this.particule.y -= 0.5
-                }
+            for(const particule of this.particules){
+
+                particule.x = particule.originX - (event.clientX / window.innerWidth - 0.5) * 50
+                particule.y = particule.originY - (event.clientY / window.innerHeight - 0.5) * 50
                 
             }
-            this.mouseX = event.clientX
-            this.mouseY = event.clientY
         })
 
     }
@@ -42,11 +32,13 @@ class Particules {
             this.opacity = Math.random()
 
             this.particule = {
-            x: this.x,
-            y: this.y,
-            radius: this.radius,
-            color: this.color,
-            opacity: this.opacity
+                originX: this.x,
+                originY: this.y,
+                x: this.x,
+                y: this.y,
+                radius: this.radius,
+                color: this.color,
+                opacity: this.opacity
             }
 
             this.particules.push(
@@ -55,23 +47,14 @@ class Particules {
         }
     }
     update() {
-        for(this.particule of this.particules) {
-
-            // if(this.particule.x <= 0 - this.particule.radius * 2) {
-            //     this.particule.x = $canvas.width + this.particule.radius * 2
-            // }
-            // else {   
-            //     this.particule.x -= this.speed
-            // }
+        for(const particule of this.particules) {
+            
         }
     }
     draw() {
         for(this.particule of this.particules) {
 
             context.beginPath()
-
-            // context.shadowColor = 'blue'
-            // context.shadowBlur = 1
             
             context.arc(this.particule.x, this.particule.y, this.particule.radius, 0, Math.PI * 2)
             
