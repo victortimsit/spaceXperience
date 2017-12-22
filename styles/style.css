@@ -1,9 +1,25 @@
+/*** FONTS ***/
+@font-face{
+    font-family: proximaLight;
+    src: url(../fonts/ProximaNovaLight.otf);
+}
+
+@font-face{
+    font-family: proximaSemiBold;
+    src: url(../fonts/ProximaNovaSemibold.otf);
+}
+
+@font-face{
+    font-family: proximaBold;
+    src: url(../fonts/ProximaNovaExtrabold.otf);
+}
+
 body{
     cursor: none;
     overflow: hidden;
 }
 canvas{
-    background: #16181f;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);;
 }
 
 /*** CURSOR ***/
@@ -35,13 +51,18 @@ canvas{
     width: 100vw;
     position: absolute;
     top: 0;
+    will-change: transform;
 }
 
 /*** PAGE ONE ***/
 /* Logo container */
+.pageOne .spaceXLogo{
+    will-change: transform;
+    text-align: center;
+}
+
 .pageOne .spaceXLogo, .logoContainer{
     width: 30vw;
-    height: 8vh;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -61,6 +82,16 @@ canvas{
 /* Logo hover */
 .pageOne .spaceXLogo:hover img{
     transform: translateX(-42%) translateY(-50%) scale(1.05);
+}
+
+.pageOne .spaceXLogo p{
+    font-family: proximaLight;
+    font-size: 1.25vw;
+    color: white;
+    text-transform: uppercase;
+    display: block;
+    transform: translateY(200%);
+
 }
 
 /*** PAGE TWO ***/
@@ -99,7 +130,7 @@ canvas{
 
 .textBlockMars .autor{
     font-style: italic;
-    font-weight: 500;
+    font-family: proximaSemiBold;
 }
 
 /* text */
@@ -111,8 +142,7 @@ canvas{
 }
 
 .content .title h1{
-    font-family: Proxima Nova;
-    font-weight: bolder;
+    font-family: proximaBold;
     font-size: 45px;
     margin-bottom: 10px;
     color: #f2f2f2;
@@ -125,15 +155,13 @@ canvas{
 }
 
 .pageTwo>.content>.textBlocks>h2{
-    font-family: Proxima Nova;
-    font-weight: bold;
+    font-family: proximaSemiBold;
     font-size: 25px;
     color: #f2f2f2;
 }
 
 .pageTwo>.content>.textBlocks>p{
-    font-family: Proxima Nova, light;
-    font-weight: light;
+    font-family: proximaLight;
     font-size: 15px;
     color: #f2f2f2;
     margin-top: 15px;
@@ -304,14 +332,11 @@ canvas{
     height: 8px;
     background: #f2f2f2;
     border-radius: 50%;
-    /* border: 1px solid #f2f2f2c6; */
     position: absolute;
     transition: transform 0.5s;
-    /* animation-name: timeLine-animation;  */
     animation-duration: 1s;
     animation-iteration-count:  infinite;
     animation-timing-function: ease ;
-    /* animation-direction: alternate; */
 }
 
 .scalingPointClick{
@@ -319,7 +344,6 @@ canvas{
     height: 8px;
     background: #f2f2f290;
     border-radius: 50%;
-    /* border: 1px solid #f2f2f2c6; */
     position: absolute;
     transition: transform 0.5s;
 }
@@ -329,10 +353,8 @@ canvas{
     height: 8px;
     background: #f2f2f2;
     border-radius: 50%;
-    /* border: 1px solid #f2f2f2c6; */
     position: absolute;
     transition: transform 0.5s;
-    /* animation-name: timeLine-animation;  */
     animation-duration: 1s;
     animation-iteration-count:  infinite;
     animation-timing-function: ease ;
@@ -362,9 +384,8 @@ canvas{
 
 .pageThree .textBlocks h2{
     color: #f2f2f2;
-    font-family: Proxima Nova;
+    font-family: proximaSemiBold;
     font-size: 25px;
-    font-weight: bolder;
     text-transform: uppercase;
     margin-bottom: 10px;
     
@@ -372,14 +393,13 @@ canvas{
 
 .pageThree .textBlocks p{
     color: #f2f2f2;
-    font-family: Proxima Nova, light;
-    font-weight: light;
+    font-family: proximaLight;
     margin-bottom: 20px;
     text-align: justify;
     font-size: 15px;
     line-height: 15px;
-        
 }
+
 .pUnderLineBar{
     width: 100px;
     height: 3px;
@@ -401,44 +421,57 @@ canvas{
 .left, .right{
     pointer-events: none;
 }
+
 .left .slider-element{
     transform: translateX(-100vw);
     opacity: 0; 
 }
+
 .right .slider-element{
     transform: translateX(100vw);
     opacity: 0;
 }
+
 .bottom .slider-element{
     transform: translateY(15vw);
 }
+
 .apparition-delay-1{
     transition-delay: 0.1s;
 }
+
 .apparition-delay-2{
     transition-delay: 0.2s;
 }
+
 .apparition-delay-3{
     transition-delay: 0.3s;
 }
+
 .apparition-delay-4{
     transition-delay: 0.4s;
 }
+
 .apparition-delay-5{
     transition-delay: 0.5s;
 }
+
 .apparition-delay-6{
     transition-delay: 0.6s;
 }
+
 .apparition-delay-7{
     transition-delay: 0.7s;
 }
+
 .apparition-delay-8{
     transition-delay: 0.8s;
 }
+
 .apparition-delay-9{
     transition-delay: 0.9s;
 }
+
 /** PAGE FOUR **/
 /**Text Blocks**/
 .pageFour>.content>.textBlock{
@@ -447,7 +480,7 @@ canvas{
     top: 50%;
     transform: translateY(-50%);
     right: 5vw;
-    font-family: Proxima Nova, light;
+    font-family: proximaLight;
     color: #f2f2f2;
 }
 
@@ -492,7 +525,6 @@ canvas{
     transform: translateX(-50%) translateY(-50%);
 }
 
-
 @keyframes rot {
 	from {
 		transform: rotate(0deg)
@@ -520,8 +552,7 @@ canvas{
 
 .pageFive .content .textBlockMars h2{
     margin-bottom: 2vh;
-    font-family: Proxima Nova;
-    font-weight: bold;
+    font-family: proximaSemiBold;
     font-size: 25px;
     color: #f2f2f2;
 
@@ -529,8 +560,7 @@ canvas{
 
 .pageFive .content .textBlockHyperLoop h2{
     margin-bottom: 3vh;
-    font-family: Proxima Nova;
-    font-weight: bold;
+    font-family: proximaSemiBold;
     font-size: 25px;
     color: #f2f2f2;
 }
@@ -543,7 +573,7 @@ canvas{
     top: 50%;
     transform: translateY(-50%);
     left: 5vw;
-    font-family: Proxima Nova, light;
+    font-family: proximaLight;
     color: #f2f2f2;
     transition: transform 0.5s ease;
 }
@@ -557,7 +587,7 @@ canvas{
 }
 
 .pageFive .content .textBlockMars .textMarsTwo{
-    margin-bottom: 20px;
+    margin-bottom: 34px;
     font-size: 15px;
     text-align: justify;
     display: block;
@@ -565,9 +595,10 @@ canvas{
 }
 
 .pageFive .content .textBlockMars .quote {
-    font-family: Proxima Nova;
-    font-weight: 900;
+    font-family: proximaBold;
+    margin-top: 10px;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .pageFive>.content>.textBlockHyperLoop{
@@ -575,7 +606,7 @@ canvas{
     width: 35vw;
     bottom: 15%;
     right: 5vw;
-    font-family: Proxima Nova, light;
+    font-family: proximaLight;
     font-size: 15px;
     color: #f2f2f2;
     line-height: 15px;
@@ -596,13 +627,6 @@ canvas{
     z-index: -1;
 }
 
-/* .pageFive>.content>.comet>.trail{
-    width: 40vw;
-    height: 7vw;
-    margin-left: 20px;
-    background-color: #f2f2f2;
-} */
-
 .pageFive>.content>.comet>.head{
     width: 10vw;
     height: 7vw;
@@ -610,7 +634,6 @@ canvas{
     top: 0px;
     left: 0px;
     z-index: 1;
-    /* background-color: #f2f2f2; */
 }
 
 .pageFive>.content>.comet>.head>.outerRoundHead{
@@ -630,7 +653,7 @@ canvas{
     top: 50%;
     right: 4vw;
     transform: translateY(-50%);
-    background-color: #16181f;
+    background-color: #e4e4e4;
 }
 .pageFive>.content>.comet>.head>.innerRoundHead{
     width: 9vw;
@@ -640,7 +663,7 @@ canvas{
     right: 5vw;
     border-radius: 50%;
     transform: translateY(-50%);
-    background-color: #16181f;
+    background-color: #e4e4e4;
 }
 
 /*** PAGE SIX ***/
@@ -654,7 +677,7 @@ canvas{
     width: 50vw;
     text-align: center;
     color: #f2f2f2;
-    font-family: Proxima Nova;
+    font-family: proximaLight;
 }
 
 .pageSix>.content p{
@@ -668,7 +691,7 @@ canvas{
     margin-bottom: 20px;
     line-height: 38px;
     font-style: italic;
-    font-weight: 900;
+    font-family: proximaBold
 
 }
 
@@ -676,5 +699,5 @@ canvas{
     color: #f2f2f2;
     font-size: 20px;
     font-style: italic;
-    font-weight: 600;
+    font-family: proximaSemiBold
 }
