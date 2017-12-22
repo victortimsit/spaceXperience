@@ -1,9 +1,3 @@
-/*
-ease.x += (event.clientX - ease.x) / ease.speed
-ease.y += (event.clientY - ease.y) / ease.speed
-*/
-
-
 class Particules {
     constructor(color, number, speed) {
         this.x
@@ -24,12 +18,14 @@ class Particules {
 
         window.addEventListener('mousemove', (event) => {
 
+            // Active to easing
             // this.easeX += (event.clientX - this.easeX) / this.speed
             // this.easeY += (event.clientY - this.easeY) / this.speed
 
-            for(const particule of this.particules){
+            for (const particule of this.particules) {
 
-                // particule.x = particule.originX - (this.easeX - particule.x) / 50
+                // Active to easing
+                // particule.x = particule.originX - (this.easeX - particule.x) / 50 
                 // particule.y = particule.originY - (this.easeY - particule.y) / 50 
                 particule.x = particule.originX - (event.clientX / window.innerWidth - 0.5) * 50
                 particule.y = particule.originY - (event.clientY / window.innerHeight - 0.5) * 50
@@ -38,7 +34,7 @@ class Particules {
 
     }
     create() {
-        for(let i = 0 ; i < this.number ; i++) {
+        for (let i = 0; i < this.number; i++) {
             this.radius = Math.random() * 2
             this.x = Math.random() * (($canvas.width * 1.2) - ($canvas.width * (-0.2))) + $canvas.width * (-0.2)
             this.y = Math.random() * (($canvas.height * 1.2) - ($canvas.height * (-0.2))) + $canvas.height * (-0.2)
@@ -60,21 +56,21 @@ class Particules {
         }
     }
     update() {
-        for(const particule of this.particules) {
-            
+        for (const particule of this.particules) {
+
         }
     }
     draw() {
-        for(this.particule of this.particules) {
+        for (this.particule of this.particules) {
 
             context.beginPath()
-            
+
             context.arc(this.particule.x, this.particule.y, this.particule.radius, 0, Math.PI * 2)
-            
+
             context.fillStyle = this.particule.color
             context.globalAlpha = this.particule.opacity
             context.fill()
-        }        
+        }
     }
 }
 
