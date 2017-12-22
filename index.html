@@ -14,6 +14,7 @@
     <link rel="manifest" href="images/favicons/manifest.json">
     <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
+    <script src="js/modernizr-custom.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,11 @@
     <div class="cursorContainer"></div>
     <div class="cursor"></div>
 
+    <!-- On touch device -->
+    <div class="textTouch">
+        <p>Sorry, this experience is not available on touch devices...</p>
+    </div>
+
     <!-- Page one -->
     <div class="page pageOne slides">
         <div class="logoContainer slider-element">
@@ -29,7 +35,9 @@
                 <img src="images/spaceXLogo.png" alt="spaceX logo">
                 <p>Enter the story of a groundbreaking company</p>
             </div>
-
+        </div>
+        <div class="rightArrow animate">
+            <img src="images/arrow-right.png" alt="">
         </div>
     </div>
 
@@ -42,14 +50,14 @@
             </div>
             <div class="textBlocks textBlockEarth slider-element">
                 <h2 class="slider-element apparition-delay-3"> EARTH</h2>
-                <p class="slider-element apparition-delay-4"> En 2002, lors de la création de SpaceX l’objectif affiché était clair et unique: faire baisser au maximum
-                    les coûts de mise en orbite afin de créer le “spatiale civile” et permettre l’essor d’entreprises privées
-                    dans le domaine spatial.</p>
+                <p class="slider-element apparition-delay-4">At the creation of SpaceX in 2002, a clear and only goal was set : bringing down the cost of the launch into
+                    orbit as much as it can be, with the idea of creating a civil spatial industry and so, bringing private
+                    companies to the extraterrestrial challenge.</p>
             </div>
             <div class="textBlocks textBlockMars slider-element">
                 <h2 class="slider-element apparition-delay-4">MARS...</h2>
-                <p class="slider-element apparition-delay-5">Avec l’évolution de l’entreprise ainsi que des technologies développées, Elon Musk a affiché un nouvel objectif
-                    : la colonisation du Système solaire, en commençant par Mars.</p>
+                <p class="slider-element apparition-delay-5">With the exponential evolution of the company and its in-house developed technologies, Elon Musk, the founder,
+                    has shown a new and updated ambition : the colonisation of the solar system, starting by Mars.</p>
             </div>
 
             <div class="planets planetEarth "></div>

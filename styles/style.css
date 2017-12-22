@@ -61,7 +61,7 @@ canvas{
 .pageOne .spaceXLogo, .logoContainer{
     width: 30vw;
     position: absolute;
-    top: 50%;
+    top: 46%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
@@ -96,6 +96,36 @@ canvas{
 
 }
 
+.pageOne .rightArrow{
+    position: absolute;
+    right: 5vw;
+    bottom: 50%;
+}
+
+.pageOne .rightArrow img{
+    width: 3vw;
+    height: 3vw;
+    opacity: 0;
+}
+
+.pageOne .rightArrow.animate img{
+    animation-name: rightArrow;
+    animation-iteration-count: infinite; 
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-delay: 3s;
+}
+
+@keyframes rightArrow{
+    0%{
+        transform: translateX(0px);
+        opacity: 0.8;
+    }
+    100%{  
+        transform: translateX(20px);
+        opacity: 0;
+    }
+}
 /*** PAGE TWO ***/
 .pageTwo.active{
     transform: translateX(0vw);
@@ -692,4 +722,27 @@ canvas{
     font-size: 20px;
     font-style: italic;
     font-family: proximaSemiBold
+}
+
+.page.touchDevice{
+    display: none;
+}
+
+.cursor.touchDevice, .cursorContainer.touchDevice{
+    display: none;
+}
+
+.textTouch.touchDevice{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+}
+
+.textTouch.touchDevice p{
+    color: #f2f2f2;
+    font-size: 20px;
+    font-style: italic;
+    font-family: proximaSemiBold;
 }

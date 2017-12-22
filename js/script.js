@@ -8,6 +8,7 @@ const $cursor = document.querySelector('.cursor')
 const cursorCoords = { x: 0, y: 0 }
 
 // Set pages
+const $pages = document.querySelectorAll('.page')
 const $pageOne = document.querySelector('.pageOne')
 const $pageTwo = document.querySelector('.pageTwo')
 
@@ -41,6 +42,12 @@ const $pageThreeTextBlocks = document.querySelectorAll('.pageThree .textBlocks')
 const $buttonSound = document.querySelector('.buttonSound')
 const $transitionSound = document.querySelector('.transitionSound')
 const $hoverSound = document.querySelector('.hoverSound')
+
+// Set text for touch device
+const $textTouch = document.querySelector('.textTouch')
+
+// Set right arrow
+const $rightArrow = $pageOne.querySelector('.rightArrow')
 
 // Set particules : create new Particules object
 const particules = new Particules(
@@ -230,9 +237,14 @@ document.addEventListener('mousedown', (event) => {
 
     if (event.clientX >= window.innerWidth * 0.9 && pageNumber < $slides.length) {
 
+        $rightArrow.classList.remove('animate')
+        
         $transitionSound.play()
         $transitionSound.currentTime = 0
         pageNumber++
+
+        $slides[pageNumber - 1].classList.remove('right')
+        $slides[pageNumber - 2].classList.add('left')
     }
 
     if (event.clientX <= window.innerWidth * 0.1 && pageNumber > 1) {
@@ -240,21 +252,9 @@ document.addEventListener('mousedown', (event) => {
         pageNumber--
         $transitionSound.play()
         $transitionSound.currentTime = 0
-    }
 
-    if (event.clientX >= window.innerWidth * 0.9) {
-
-        $slides[pageNumber - 1].classList.remove('right')
-        $slides[pageNumber - 2].classList.add('left')
-
-    }
-    if (event.clientX <= window.innerWidth * 0.1) {
-
-        if (pageNumber != 0) {
-
-            $slides[pageNumber - 1].classList.remove('left')
-            $slides[pageNumber].classList.add('right')
-        }
+        $slides[pageNumber - 1].classList.remove('left')
+        $slides[pageNumber].classList.add('right')
     }
 })
 
@@ -266,6 +266,9 @@ document.addEventListener('keydown', function (event) {
         $transitionSound.play()
         $transitionSound.currentTime = 0
         pageNumber++
+
+        $slides[pageNumber - 1].classList.remove('right')
+        $slides[pageNumber - 2].classList.add('left')
     }
 
     if (event.keyCode === 37 && pageNumber > 1) {
@@ -273,22 +276,9 @@ document.addEventListener('keydown', function (event) {
         $transitionSound.play()
         $transitionSound.currentTime = 0
         pageNumber--
-    }
 
-    if (event.keyCode === 39) {
-
-        if (pageNumber <= $slides.length)
-
-            $slides[pageNumber - 1].classList.remove('right')
-        $slides[pageNumber - 2].classList.add('left')
-    }
-    if (event.keyCode === 37) {
-
-        if (pageNumber >= 1) {
-
-            $slides[pageNumber - 1].classList.remove('left')
-            $slides[pageNumber].classList.add('right')
-        }
+        $slides[pageNumber - 1].classList.remove('left')
+        $slides[pageNumber].classList.add('right')
     }
 });
 
@@ -353,4 +343,15 @@ for (let i = 0; i < $hitBoxs.length; i++) {
             $glowingPoints[i + 1].style.animationName = 'timeLine-animation'
         }
     })
+}
+
+if(Modernizr.touchevents){
+    for(const $page of $pages){
+
+        $page.classList.add('touchDevice')
+    }
+
+    $cursorContainer.classList.add('touchDevice')
+    $cursor.classList.add('touchDevice')
+    $textTouch.classList.add('touchDevice')
 }
