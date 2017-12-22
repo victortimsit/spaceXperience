@@ -224,6 +224,8 @@ document.addEventListener('mousemove', (event) => {
 // Moving to the second page at mousedown
 $spaceXLogo.addEventListener('mousedown', (event) => {
 
+    $rightArrow.classList.remove('animate')
+
     $transitionSound.play()
     $transitionSound.currentTime = 0
     pageNumber++
@@ -264,7 +266,7 @@ document.addEventListener('keydown', function (event) {
     if (event.keyCode === 39 && pageNumber < $slides.length) {
 
         $rightArrow.classList.remove('animate')
-        
+
         $transitionSound.play()
         $transitionSound.currentTime = 0
         pageNumber++
