@@ -11,8 +11,9 @@ const cursorCoords = { x: 0, y: 0 }
 const $pageOne = document.querySelector('.pageOne')
 const $pageTwo = document.querySelector('.pageTwo')
 
-// Slides
+// Set Slides
 const $slides = document.querySelectorAll('.slides')
+
 // Set planets of page two
 const $earth = $pageTwo.querySelector('.planetEarth')
 const $mars = $pageTwo.querySelector('.planetMars')
@@ -41,7 +42,7 @@ const $buttonSound = document.querySelector('.buttonSound')
 const $transitionSound = document.querySelector('.transitionSound')
 const $hoverSound = document.querySelector('.hoverSound')
 
-// Set particules
+// Set particules : create new Particules object
 const particules = new Particules(
     '#fefefe',
     500,
@@ -54,47 +55,16 @@ const mouse = {
     y: 0
 }
 
+// Set page counter
 let pageNumber = 1
 
 // Set transition Duration
 const transitionDuration = 0
 
-let transitioning = false
-
 // Page 1
 const $spaceXLogo = $pageOne.querySelector('.spaceXLogo')
 
-// Rezise canvas function
-const resizeCanvas = () => {
-    $canvas.width = window.innerWidth
-    $canvas.height = window.innerHeight
-}
-
-const clearCanvas = () => {
-    context.clearRect(0, 0, $canvas.width, $canvas.height)
-}
-// Called resize
-resizeCanvas()
-
-// Called resize when resize
-window.addEventListener('resize', () => {
-
-    resizeCanvas()
-})
-
-// Create and draw particules
-particules.create()
-
-// Loop
-const loop = () => {
-    window.requestAnimationFrame(loop)
-
-    particules.update()
-    clearCanvas()
-
-    particules.draw()
-}
-
+// Set moovings elements depending on mousemove
 const title = {
     originX: 50,
     originY: 50,
@@ -130,7 +100,42 @@ const dottedBottom = {
     y: 50
 }
 
-// Animate cursor on mousemove
+// Rezise canvas function
+const resizeCanvas = () => {
+    $canvas.width = window.innerWidth
+    $canvas.height = window.innerHeight
+}
+
+// Clear canvas
+const clearCanvas = () => {
+    context.clearRect(0, 0, $canvas.width, $canvas.height)
+}
+
+// Loop
+const loop = () => {
+
+    window.requestAnimationFrame(loop)
+    clearCanvas()
+
+    particules.draw()
+}
+
+// Called resize
+resizeCanvas()
+
+// Called resize when resize
+window.addEventListener('resize', () => {
+
+    resizeCanvas()
+})
+
+// Called loop
+loop()
+
+// Create and draw particules
+particules.create()
+
+// Animate elements on mousemove
 document.addEventListener('mousemove', (event) => {
 
     // Title animation 
@@ -155,13 +160,10 @@ document.addEventListener('mousemove', (event) => {
     dottedBottom.x = dottedBottom.originX + (event.clientX / window.innerWidth - 0.5) * 8
     dottedBottom.y = dottedBottom.originY + (event.clientY / window.innerWidth - 0.5) * 10
 
-
-
     // Logo update
     $spaceXLogo.style.transform = `translateX(-${title.x}%) translateY(-${title.y}%)`
 
-    if (pageNumber == 2 && !transitioning) {
-
+    if (pageNumber == 2) {
 
         // Mars update
         $mars.style.transform = `translateX(-${planetMars.x}%) translateY(-${planetMars.y}%)`
@@ -175,7 +177,6 @@ document.addEventListener('mousemove', (event) => {
 
         // Bottom
         $bottomLine.style.transform = `translateX(${dottedBottom.x}%) translateY(${dottedBottom.y}%) rotateZ(62deg)`
-
     }
 
     // Set mouse
@@ -186,6 +187,7 @@ document.addEventListener('mousemove', (event) => {
     cursorCoords.x = mouse.x
     cursorCoords.y = mouse.y
 
+    // Update cursor position
     $cursorContainer.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px)`
     $cursor.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px)`
 
@@ -196,120 +198,50 @@ document.addEventListener('mousemove', (event) => {
         $cursorContainer.style.clipPath = 'polygon(29% 0, 75% 50%, 29% 100%, 26% 100%, 72% 50%, 26% 0)'
         $cursor.style.opacity = 0
     }
+
     else if (mouse.x <= window.innerWidth * 0.9) {
+
         $cursorContainer.style.background = 'none'
         $cursorContainer.style.clipPath = 'none'
         $cursor.style.opacity = 1
     }
 
     if (mouse.x <= window.innerWidth * 0.1 && pageNumber > 1) {
+
         $cursorContainer.style.background = '#fefefe'
         $cursorContainer.style.clipPath = 'polygon(71% 0, 25% 50%, 71% 100%, 74% 100%, 28% 50%, 74% 0)'
         $cursor.style.opacity = 0
     }
 })
 
+// Moving to the second page at mousedown
 $spaceXLogo.addEventListener('mousedown', (event) => {
+
     $transitionSound.play()
     $transitionSound.currentTime = 0
     pageNumber++
-    transitioning = true
 
     $slides[pageNumber - 1].classList.remove('right')
     $slides[pageNumber - 2].classList.add('left')
-
-    setTimeout(() => {
-        transitioning = false
-    }, transitionDuration)
 })
 
-// Count page number and update transitioning
+// Update page counter and transitioning on mousedown
 document.addEventListener('mousedown', (event) => {
+
     if (event.clientX >= window.innerWidth * 0.9 && pageNumber < $slides.length) {
+
         $transitionSound.play()
         $transitionSound.currentTime = 0
         pageNumber++
-        transitioning = true
-        console.log(transitioning)
-
-        setTimeout(() => {
-            transitioning = false
-            console.log(transitioning)
-        }, transitionDuration)
     }
+
     if (event.clientX <= window.innerWidth * 0.1 && pageNumber > 1) {
+
         pageNumber--
         $transitionSound.play()
         $transitionSound.currentTime = 0
-        transitioning = true
-
-        setTimeout(() => {
-            transitioning = false
-            console.log(transitioning)
-        }, transitionDuration)
     }
-})
 
-// Animate cursor on mousedown and mouse up
-document.addEventListener('mousedown', () => {
-    $cursorContainer.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px) scale(0.2)`
-
-    document.addEventListener('mouseup', () => {
-        $cursorContainer.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px) scale(1)`
-    })
-})
-
-loop()
-
-$pageThreeTextBlocks[0].style.opacity = 1
-$scalingPointsClick[0].style.transform = 'scale(3)'
-$glowingPoints[1].style.animationName = 'timeLine-animation'
-
-// Page 3
-// timeLine Hover and click
-for (let i = 0; i < $hitBoxs.length; i++) {
-    // hover in
-    $hitBoxs[i].addEventListener('mouseenter', (event) => {
-        $hoverSound.play()
-        $hoverSound.currentTime = 0
-        $scalingPoints[i].style.transform = 'scale(2)'
-
-
-    })
-    // hover out
-    $hitBoxs[i].addEventListener('mouseleave', (event) => {
-        $scalingPoints[i].style.transform = 'scale(1)'
-    })
-
-    $hitBoxs[i].addEventListener('mousedown', (event) => {
-        $buttonSound.play()
-        $buttonSound.currentTime = 0
-
-        $scalingPoints[i].style.transform = 'scale(1)'
-        for (const $pageThreeTextBlock of $pageThreeTextBlocks) {
-            $pageThreeTextBlock.style.opacity = 0
-        }
-        for (const $scalingPointClick of $scalingPointsClick) {
-            $scalingPointClick.style.transform = 'scale(1)'
-        }
-        for (const $glowingPoint of $glowingPoints) {
-            $glowingPoint.style.animationName = 'none'
-        }
-
-        $scalingPointsClick[i].style.transform = 'scale(3)'
-        $pageThreeTextBlocks[i].style.opacity = 1
-
-        if (i < $hitBoxs.length - 1) {
-
-            $glowingPoints[i + 1].style.animationName = 'timeLine-animation'
-        }
-
-    })
-
-}
-
-// Slide transition
-document.addEventListener('mousedown', (event) => {
     if (event.clientX >= window.innerWidth * 0.9) {
 
         $slides[pageNumber - 1].classList.remove('right')
@@ -322,47 +254,103 @@ document.addEventListener('mousedown', (event) => {
 
             $slides[pageNumber - 1].classList.remove('left')
             $slides[pageNumber].classList.add('right')
-    
         }
-
     }
 })
 
+// // Update page counter and transitioning on keydown
 document.addEventListener('keydown', function (event) {
+
     if (event.keyCode === 39 && pageNumber < $slides.length) {
+
         $transitionSound.play()
         $transitionSound.currentTime = 0
         pageNumber++
-        transitioning = true
-
-        setTimeout(() => {
-            transitioning = false
-        }, transitionDuration)
-
     }
+
     if (event.keyCode === 37 && pageNumber > 1) {
+
         $transitionSound.play()
         $transitionSound.currentTime = 0
         pageNumber--
-        transitioning = true
-
-        setTimeout(() => {
-            transitioning = false
-        }, transitionDuration)
     }
 
-});
-
-document.addEventListener('keydown', function (event) {
     if (event.keyCode === 39) {
+
         if (pageNumber <= $slides.length)
+
             $slides[pageNumber - 1].classList.remove('right')
         $slides[pageNumber - 2].classList.add('left')
     }
     if (event.keyCode === 37) {
+
         if (pageNumber >= 1) {
+
             $slides[pageNumber - 1].classList.remove('left')
             $slides[pageNumber].classList.add('right')
         }
     }
 });
+
+// Animate cursor on mousedown and mouse up
+document.addEventListener('mousedown', () => {
+
+    $cursorContainer.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px) scale(0.2)`
+
+    document.addEventListener('mouseup', () => {
+
+        $cursorContainer.style.transform = `translateX(${cursorCoords.x}px) translateY(${cursorCoords.y}px) scale(1)`
+    })
+})
+
+// Set default elements
+$pageThreeTextBlocks[0].style.opacity = 1
+$scalingPointsClick[0].style.transform = 'scale(3)'
+$glowingPoints[1].style.animationName = 'timeLine-animation'
+
+// Page 3
+// timeLine Hover and click
+for (let i = 0; i < $hitBoxs.length; i++) {
+    // hover in
+    $hitBoxs[i].addEventListener('mouseenter', (event) => {
+
+        $hoverSound.play()
+        $hoverSound.currentTime = 0
+        $scalingPoints[i].style.transform = 'scale(2)'
+    })
+    // Hover out, init of key points scale
+    $hitBoxs[i].addEventListener('mouseleave', (event) => {
+
+        $scalingPoints[i].style.transform = 'scale(1)'
+    })
+
+    // Mouse down on key points hit box
+    $hitBoxs[i].addEventListener('mousedown', (event) => {
+
+        $buttonSound.play()
+        $buttonSound.currentTime = 0
+
+        $scalingPoints[i].style.transform = 'scale(1)'
+
+        for (const $pageThreeTextBlock of $pageThreeTextBlocks) {
+
+            $pageThreeTextBlock.style.opacity = 0
+        }
+        for (const $scalingPointClick of $scalingPointsClick) {
+
+            $scalingPointClick.style.transform = 'scale(1)'
+        }
+        for (const $glowingPoint of $glowingPoints) {
+
+            $glowingPoint.style.animationName = 'none'
+        }
+
+        $scalingPointsClick[i].style.transform = 'scale(3)'
+        $pageThreeTextBlocks[i].style.opacity = 1
+
+        if (i < $hitBoxs.length - 1) {
+
+            $glowingPoints[i + 1].style.animationName = 'timeLine-animation'
+        }
+    })
+}

@@ -35,12 +35,14 @@ class Particules {
     }
     create() {
         for (let i = 0; i < this.number; i++) {
+
             this.radius = Math.random() * 2
             this.x = Math.random() * (($canvas.width * 1.2) - ($canvas.width * (-0.2))) + $canvas.width * (-0.2)
             this.y = Math.random() * (($canvas.height * 1.2) - ($canvas.height * (-0.2))) + $canvas.height * (-0.2)
             this.opacity = Math.random()
 
             this.particule = {
+
                 originX: this.x,
                 originY: this.y,
                 x: this.x,
@@ -50,14 +52,7 @@ class Particules {
                 opacity: this.opacity
             }
 
-            this.particules.push(
-                this.particule
-            )
-        }
-    }
-    update() {
-        for (const particule of this.particules) {
-
+            this.particules.push(this.particule)
         }
     }
     draw() {
