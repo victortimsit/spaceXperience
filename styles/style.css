@@ -14,6 +14,7 @@
     src: url(../fonts/ProximaNovaExtrabold.otf);
 }
 
+/*** BODY AND BACKGROUND PROPERTIES ***/
 body{
     cursor: none;
     overflow: hidden;
@@ -46,6 +47,7 @@ canvas{
     left: 0%;
 }
 
+/*** PAGES ***/
 .page{
     height: 100vh;
     width: 100vw;
@@ -56,11 +58,6 @@ canvas{
 
 /*** PAGE ONE ***/
 /* Logo container */
-.pageOne .spaceXLogo{
-    will-change: transform;
-    text-align: center;
-}
-
 .pageOne .spaceXLogo, .logoContainer{
     width: 30vw;
     position: absolute;
@@ -70,6 +67,11 @@ canvas{
 }
 
 /* Logo */
+.pageOne .spaceXLogo{
+    will-change: transform;
+    text-align: center;
+}
+
 .pageOne .spaceXLogo img{
     width: 30vw;
     position: absolute;
@@ -108,10 +110,7 @@ canvas{
     transform: translateX(-50%);
 }
 
-/**CONTENANTS**/
-
-/*text Blocks*/
-
+/* Text Blocks */
 .pageTwo>.content>.textBlocks{
     width: 25vw;
     height: 10vh;
@@ -133,8 +132,7 @@ canvas{
     font-family: proximaSemiBold;
 }
 
-/* text */
-
+/* Text */
 .content .title{
     position: absolute;
     top: 4vh;
@@ -169,7 +167,7 @@ canvas{
     line-height: 133%;
 }
 
-/** planets **/
+/** Planets **/
 .planets{
 
     border-radius: 50%;
@@ -215,7 +213,6 @@ canvas{
     transform: translateX(50%) translateY(50%) rotateZ(62deg);
 }
 
-
 /*** PAGE THREE ***/
 /*** TIME LINE ***/
 .timeLine{
@@ -227,12 +224,10 @@ canvas{
 }
 
 /* Time line elements */
-
 .keyPointOne{
     left: 0;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-
 }
 
 .linkOne{
@@ -305,7 +300,6 @@ canvas{
 
 .link{
     width: 1px;
-    /* height: 150px; */
     background: #f2f2f2c6;
     position: absolute;
     top: 50%;
@@ -360,6 +354,7 @@ canvas{
     animation-timing-function: ease ;
 }
 
+/** KEYFRAMES OF GLOWING POINTS **/
 @keyframes timeLine-animation{
     0%{
         opacity: 1;
@@ -370,8 +365,7 @@ canvas{
     }
 }
 
-/*** PARAGRAPHS ***/
-
+/*** Text ***/
 .pageThree .textBlocks{
     width: 50vw;
     position: absolute;
@@ -407,12 +401,10 @@ canvas{
     background: #f2f2f2;
 }
 
-
 /***************************************
 ************ SLIDE TRANSITION **********
 ****************************************/
 
-/*** Attention, ajoute delay sur le parallax du spaceX ***/
 .slider-element{
     opacity: 1;
     transition: transform 0.3s, opacity 0.5s;
@@ -436,6 +428,7 @@ canvas{
     transform: translateY(15vw);
 }
 
+/** delay of transition **/
 .apparition-delay-1{
     transition-delay: 0.1s;
 }
@@ -473,7 +466,7 @@ canvas{
 }
 
 /** PAGE FOUR **/
-/**Text Blocks**/
+/** Text Blocks **/
 .pageFour>.content>.textBlock{
     position: absolute;
     width: 40vw;
@@ -501,7 +494,6 @@ canvas{
 }
 
 /**planet**/
-
 .pageFour>.content>.outerPlanet>.planet{
     position: absolute;
     width: 25vw;
@@ -525,6 +517,7 @@ canvas{
     transform: translateX(-50%) translateY(-50%);
 }
 
+/** KEYFRAMES OF ORBIT ELEMENT **/
 @keyframes rot {
 	from {
 		transform: rotate(0deg)
@@ -550,12 +543,12 @@ canvas{
 	animation: rot 3s infinite linear;
 }
 
+/** Text blocks **/
 .pageFive .content .textBlockMars h2{
     margin-bottom: 2vh;
     font-family: proximaSemiBold;
     font-size: 25px;
     color: #f2f2f2;
-
 }
 
 .pageFive .content .textBlockHyperLoop h2{
@@ -578,6 +571,18 @@ canvas{
     transition: transform 0.5s ease;
 }
 
+.pageFive>.content>.textBlockHyperLoop{
+    position: absolute;
+    width: 35vw;
+    bottom: 15%;
+    right: 5vw;
+    font-family: proximaLight;
+    font-size: 15px;
+    color: #f2f2f2;
+    line-height: 15px;
+}
+
+/** Text **/
 .pageFive .content .textBlockMars .textMarsOne{
     margin-bottom: 20px;
     font-size: 15px;
@@ -601,18 +606,7 @@ canvas{
     font-size: 20px;
 }
 
-.pageFive>.content>.textBlockHyperLoop{
-    position: absolute;
-    width: 35vw;
-    bottom: 15%;
-    right: 5vw;
-    font-family: proximaLight;
-    font-size: 15px;
-    color: #f2f2f2;
-    line-height: 15px;
-
-}
-
+/** Hyper loop modul **/
 .pageFive>.content>.comet{
     position: absolute;
     top: 18vw;
@@ -655,6 +649,7 @@ canvas{
     transform: translateY(-50%);
     background-color: #e4e4e4;
 }
+
 .pageFive>.content>.comet>.head>.innerRoundHead{
     width: 9vw;
     height: 5vw;
@@ -668,7 +663,6 @@ canvas{
 
 /*** PAGE SIX ***/
 /** Quote **/
-
 .pageSix>.content .textBlockQuote{
     position: absolute;
     left: 50%;
@@ -683,7 +677,6 @@ canvas{
 .pageSix>.content p{
     text-align: middle;
     display: block;
-
 }
 
 .pageSix>.content .quote{
@@ -692,7 +685,6 @@ canvas{
     line-height: 38px;
     font-style: italic;
     font-family: proximaBold
-
 }
 
 .pageSix>.content .autor{
