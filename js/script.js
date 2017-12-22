@@ -263,6 +263,8 @@ document.addEventListener('keydown', function (event) {
 
     if (event.keyCode === 39 && pageNumber < $slides.length) {
 
+        $rightArrow.classList.remove('animate')
+        
         $transitionSound.play()
         $transitionSound.currentTime = 0
         pageNumber++
