@@ -1,3 +1,9 @@
+/*
+ease.x += (event.clientX - ease.x) / ease.speed
+ease.y += (event.clientY - ease.y) / ease.speed
+*/
+
+
 class Particules {
     constructor(color, number, speed) {
         this.x
@@ -13,13 +19,20 @@ class Particules {
         this.angle = 0
         this.xTemp = 0
         this.yTemp = 0
+        this.easeX = 0
+        this.easeY = 0
 
         window.addEventListener('mousemove', (event) => {
+
+            // this.easeX += (event.clientX - this.easeX) / this.speed
+            // this.easeY += (event.clientY - this.easeY) / this.speed
+
             for(const particule of this.particules){
 
+                // particule.x = particule.originX - (this.easeX - particule.x) / 50
+                // particule.y = particule.originY - (this.easeY - particule.y) / 50 
                 particule.x = particule.originX - (event.clientX / window.innerWidth - 0.5) * 50
                 particule.y = particule.originY - (event.clientY / window.innerHeight - 0.5) * 50
-                
             }
         })
 
